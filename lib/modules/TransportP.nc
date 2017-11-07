@@ -69,7 +69,7 @@ implementation{
 
 
 	Transfer* TCP;
-	Router * RTable;;
+	Router * RTable;
 
 	uint8_t t_count = 0;
 	pack MSG;
@@ -918,15 +918,15 @@ implementation{
 		//		//200				//123					//1
 		KEY = fd->Src_port << 24 | addr->source_Port << 16 | addr->source_Addr;
 
-		//dbg(TRANSPORT_CHANNEL, "CONNECTION :  l_syn %hhu   \n", TCP->SeqNum);
+		dbg(TRANSPORT_CHANNEL, "CONNECTION :  l_syn %hhu   \n", TCP->SeqNum);
 
 		call Hash.insert(KEY,fd);
 
-		//dbg(TRANSPORT_CHANNEL, "SENDING... \n");
+		dbg(TRANSPORT_CHANNEL, "SENDING... \n");
 		retranmission(TCP->Flag, SERVER_ADDR, TCP->SeqNum , MSG ,fd);
 
 
-		//dbg(TRANSPORT_CHANNEL, "connect() SUCCESS... \n");
+		dbg(TRANSPORT_CHANNEL, "connect() SUCCESS... \n");
         return SUCCESS;
     }
 
@@ -943,11 +943,11 @@ implementation{
 		if(fd->state == EST){
 			uint32_t key;
 			dbg(TRANSPORT_CHANNEL, "work done...FIN 1...\n");
-			//dbg(TRANSPORT_CHANNEL, "SRcport %hhu  destport %hhu destaddr %hhu\n",fd->Src_port, fd->Dest_port, fd->Dest_addr);
+			dbg(TRANSPORT_CHANNEL, "SRcport %hhu  destport %hhu destaddr %hhu\n",fd->Src_port, fd->Dest_port, fd->Dest_addr);
 			TCP = (Transfer*) MSG.payload;
 			TCP->Flag = FIN;
 			fd->state = FIN_WAIT;
-			//dbg(TRANSPORT_CHANNEL, "													SRcport %hhu  \n",TCP->Acknowledge);
+			dbg(TRANSPORT_CHANNEL, "													SRcport %hhu  \n",TCP->Acknowledge);
 
 			TCP->SeqNum = TCP->Acknowledge;
 
