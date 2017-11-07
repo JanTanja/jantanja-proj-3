@@ -31,17 +31,5 @@ def main():
     s.ping(9,1, "hello alex\r\n");
     s.runTime(500);
 
-    s.chat(6,"hello dan\r\n");
-    s.runTime(800);
-
-    s.chat(9,"hello ashley\r\n");
-    s.runTime(800);
-
-    s.chat(3,"listusers\r\n");
-    s.runTime(800);
-
-    s.chat(9,"message hi guys\r\n");
-    s.runTime(900);
-
 if __name__ == '__main__':
     main()
