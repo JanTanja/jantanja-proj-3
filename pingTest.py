@@ -24,46 +24,11 @@ def main():
     s.addChannel(s.ROUTING_CHANNEL);
     s.addChannel(s.TRANSPORT_CHANNEL);
 
-
-
-    """s.runTime(10);
-
-    print("\nALL MOTES ARE ON\n")
-
-    s.routeDMP(1);
-    s.runTime(700);
-
-    s.ping(1, 6, "Hi!"); ##flood the network
-    s.runTime(100);
-
-    s.moteOff(4)
-    s.runTime(1000);
-
-    print("\n4 MOTES ARE off\n")
-
-    s.routeDMP(1);
-    s.runTime(100);
-
-    s.ping(1, 6, "Hi!"); ##flood the network
-    s.runTime(1000);
-
-    print("\n1,4 MOTES ARE on\n")
-    s.moteOn(4)
-    s.runTime(1000);
-
-    s.routeDMP(1);
-    s.runTime(100);
-
-    s.ping(1, 6, "Hi!"); ##flood the network
-    s.runTime(1000);
-    """
-
-
     s.runTime(300);
     s.testServer(1);
     s.runTime(60);
 
-    s.chat(3,"hello alex\r\n");
+    s.ping(9,1, "hello alex\r\n");
     s.runTime(500);
 
     s.chat(6,"hello dan\r\n");
@@ -77,18 +42,6 @@ def main():
 
     s.chat(9,"message hi guys\r\n");
     s.runTime(900);
-
-
-
-    """s.testClient(2);
-    s.runTime(1);
-    s.runTime(2000);"""
-
-    """s.testClient(3);
-    s.runTime(1);
-    s.runTime(2000);
-"""
-
 
     #s.neighborDMP(3);
 
