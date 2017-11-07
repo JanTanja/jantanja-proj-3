@@ -436,10 +436,7 @@ implementation{
         uint8_t readcursor =0;
         uint8_t c, d, e, text_length, pattern_length, position = 0;
         conn temp;
-        //uint8_t write_counter[Queue_size];
 
-        //while(i < Queue_size){
-            //dbg(TRANSPORT_CHANNEL, "CLieNT SENDING\n");
             temp = call QueueC.dequeue();
 
             if( write_off == FALSE){
@@ -509,14 +506,11 @@ implementation{
             }
 
             call QueueC.enqueue(temp);
-        //    i++;
-        //}
-
     }
 
     event void * Transport.connectDone(socket_t * FD){
 
-        conn  socket;
+        conn socket;
 
         socket.fd = FD;
         call QueueC.enqueue(socket);

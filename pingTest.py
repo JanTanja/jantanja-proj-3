@@ -28,7 +28,7 @@ def main():
     s.testServer(1);
     s.runTime(60);
 
-    s.ping(9,1, "hello alex\r\n");
+    s.chat(9, "hello alex\r\n");
     s.runTime(500);
 
 if __name__ == '__main__':
