@@ -185,25 +185,12 @@ implementation{
 		a =0;
 		while(i > 0){
 
-			//dbg(GENERAL_CHANNEL, "Reading data %c\n", buff[i]);
 			rev[a] = buff[i];
 			i--;
 			a++;
 		}
 
 		l = match(rev,bufflen, L,9);
-		//dbg(GENERAL_CHANNEL, "size %hhu\n");
-		if(l > 0){
-			l +=  8;
-			while(l> 0){
-
-				if(rev[l] > 0 && rev[l] < 128){
-					dbg(GENERAL_CHANNEL, "SKYPE>>: %c\n", rev[l]);
-				}
-				l--;
-			}
-
-		}
 
 		if(l==0){
 			m = match(rev,bufflen, M ,7);
@@ -211,14 +198,6 @@ implementation{
 
 				m +=  6;
 				while(m> 0){
-
-					if(rev[m] > 0 && rev[m] < 128){
-						dbg(GENERAL_CHANNEL, "SKYPE>>: %c\n", rev[m]);
-					}
-					if(rev[m] ==13){
-						break;
-
-					}
 					m--;
 				}
 
@@ -232,8 +211,6 @@ implementation{
 
 				h +=  4;
 				while(h> 0){
-
-					dbg(GENERAL_CHANNEL, "SKYPE>>: %c\n", rev[h]);
 					h--;
 				}
 

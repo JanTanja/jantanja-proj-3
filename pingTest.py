@@ -43,13 +43,5 @@ def main():
     s.chat(9,"message hi guys\r\n");
     s.runTime(900);
 
-    #s.neighborDMP(3);
-
-    #s.ping(9, 1, "Hi!");
-    #s.runTime(30);
-    #s.neighborDMP(3);
-    #s.runTime(15);
-    #s.moteOff(6);
-    #s.runTime(1);
 if __name__ == '__main__':
     main()

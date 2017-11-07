@@ -119,9 +119,6 @@ class TestSim:
     def ping(self, source, dest, msg):
         self.sendCMD(self.CMD_PING, source, "{0}{1}".format(chr(dest),msg));
 
-    def chat(self, source, msg):
-        self.sendCMD(self.CMD_SET_CLIENT, source, "{0}".format(msg));
-
     def neighborDMP(self, destination):
         self.sendCMD(self.CMD_NEIGHBOR_DUMP, destination, "neighbor command");
 
