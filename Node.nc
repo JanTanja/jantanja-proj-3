@@ -466,7 +466,7 @@ implementation{
                 while(j < 12 ){
 
                     if(C_start == FALSE){
-                        dbg(TRANSPORT_CHANNEL, "START>>>\n");
+                        // dbg(TRANSPORT_CHANNEL, "START>>>\n");
                         temp.start = C_over_read%BUFFER_SIZE;
                         C_start = TRUE;
                     }
@@ -524,7 +524,7 @@ implementation{
 
         memcpy(tempbuff, (getPayload()), 24 *sizeof(getPayload()));
 
-        dbg(TRANSPORT_CHANNEL, "CLIENT: Connection DONE %d %d %d\n", FD->Src_port, FD->Dest_port , FD->Dest_addr);
+        //dbg(TRANSPORT_CHANNEL, "CLIENT: Connection DONE %d %d %d\n", FD->Src_port, FD->Dest_port , FD->Dest_addr);
 
 
         //start timer. periodic

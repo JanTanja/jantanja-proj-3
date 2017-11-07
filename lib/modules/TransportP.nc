@@ -499,7 +499,7 @@ implementation{
 
 		if(tcp->Flag == (SYN_ACK) && FD_src->state == SYN_SEND){
 
-			dbg(TRANSPORT_CHANNEL, "SYN + ACK to client\n");
+			// dbg(TRANSPORT_CHANNEL, "SYN + ACK to client\n");
 
 			TCP = (Transfer*) MSG.payload;
 			FD_src->state = EST;
@@ -972,104 +972,113 @@ implementation{
 		return SUCCESS;
 	}
 
-    command error_t Transport.release(socket_t* fd){
-		/*
-		TCP = (Transfer*) MSG.payload;
-		TCP->Flag = FIN;
-		//FIN flag indicates that the byte before sequence number x was the last byte of the byte stream sent by the remote host.
-		TCP->SeqNum = (Transfer*) fd->last_S_send ;
-		call transSender.send(MSG, fd->Dest_addr);
-		*/
-        return SUCCESS;
-    }
-
-
-    command error_t Transport.listen(socket_t * fd){
-
-		//A passive open is the creation of a listening socket, to accept incoming connections.
-		//It uses socket(), bind(), followed by an accept() loop.
-
-		//The listen operation then defines how many connections can be pending on the specified socket
-		//fd->Dest_addr = SENTINEL;// make sentinel value
-		//fd->Dest_port = SENTINEL;
-
-		uint32_t key;
-
-		fd->state     = LISTEN;
-		fd->Dest_addr = SENTINEL;// make sentinel value
-		fd->Dest_port = SENTINEL;
-		fd->Src_port = SERVER_PORT; //123
-
-		//		//123 			//999 					//999
-		key = fd->Src_port<< 24| fd->Dest_port << 16 | fd->Dest_addr ;
-
-		call Hash.insert(key,fd);
-
-        return SUCCESS;
-    }
+    // command error_t Transport.release(socket_t* fd){
+	// 	/*
+	// 	TCP = (Transfer*) MSG.payload;
+	// 	TCP->Flag = FIN;
+	// 	//FIN flag indicates that the byte before sequence number x was the last byte of the byte stream sent by the remote host.
+	// 	TCP->SeqNum = (Transfer*) fd->last_S_send ;
+	// 	call transSender.send(MSG, fd->Dest_addr);
+	// 	*/
+    //     return SUCCESS;
+    // }
 
 
 
 
-	event void WaitTimer.fired(){ //signals that the timer has expired (one-shot) or repeated (periodic).
+    // command error_t Transport.listen(socket_t * fd){
 
-	}
+	// 	//A passive open is the creation of a listening socket, to accept incoming connections.
+	// 	//It uses socket(), bind(), followed by an accept() loop.
 
-	uint8_t min(uint8_t EF,uint8_t PAYLOAD){
+	// 	//The listen operation then defines how many connections can be pending on the specified socket
+	// 	//fd->Dest_addr = SENTINEL;// make sentinel value
+	// 	//fd->Dest_port = SENTINEL;
 
-		uint8_t c = 0;
-		 while ( EF &&  PAYLOAD ){
+	// 	uint32_t key;
 
-      		EF--;  PAYLOAD--; c++;
+	// 	fd->state     = LISTEN;
+	// 	fd->Dest_addr = SENTINEL;// make sentinel value
+	// 	fd->Dest_port = SENTINEL;
+	// 	fd->Src_port = SERVER_PORT; //123
 
-  		}
-  		return c;
+	// 	//		//123 			//999 					//999
+	// 	key = fd->Src_port<< 24| fd->Dest_port << 16 | fd->Dest_addr ;
 
-	}
+	// 	call Hash.insert(key,fd);
 
-
-	uint8_t min2(uint8_t EF,uint8_t PAYLOAD){
-
-		if(EF < PAYLOAD){
-			return EF;
-		}
-		else{
-
-			return PAYLOAD;
-		}
-
-	}
-
-	uint8_t getPort(){
-		uint8_t temp = 0;
-		uint16_t i = 0;
-
-		if(once == FALSE){
-			filler ();
-			once = TRUE;
-		}
-
-		temp = rand()% 126 + 129;
-
-		for (i = 0 ; i < 255; i++){// use to fill up neighborList w/place holder value
-
-			if(ports[i]== SENTINEL){
-				continue;
-			}
-
-			if(temp == ports[i] || ports[i] == 80){
-				temp = rand()% 254 + 129;
-				i=0;//recheck
-			}
+    //     return SUCCESS;
+    // }
 
 
-		}
 
-		ports[port_count++]= temp;
 
-		return temp;
 
-	}
+	// event void WaitTimer.fired(){ //signals that the timer has expired (one-shot) or repeated (periodic).
+
+	// }
+
+
+	// uint8_t min(uint8_t EF,uint8_t PAYLOAD){
+
+	// 	uint8_t c = 0;
+	// 	 while ( EF &&  PAYLOAD ){
+
+    //   		EF--;  PAYLOAD--; c++;
+
+  	// 	}
+  	// 	return c;
+
+	// }
+
+
+
+	// uint8_t min2(uint8_t EF,uint8_t PAYLOAD){
+
+	// 	if(EF < PAYLOAD){
+	// 		return EF;
+	// 	}
+	// 	else{
+
+	// 		return PAYLOAD;
+	// 	}
+
+	// }
+
+
+
+	// uint8_t getPort(){
+	// 	uint8_t temp = 0;
+	// 	uint16_t i = 0;
+
+	// 	if(once == FALSE){
+	// 		filler ();
+	// 		once = TRUE;
+	// 	}
+
+	// 	temp = rand()% 126 + 129;
+
+	// 	for (i = 0 ; i < 255; i++){// use to fill up neighborList w/place holder value
+
+	// 		if(ports[i]== SENTINEL){
+	// 			continue;
+	// 		}
+
+	// 		if(temp == ports[i] || ports[i] == 80){
+	// 			temp = rand()% 254 + 129;
+	// 			i=0;//recheck
+	// 		}
+
+
+	// 	}
+
+	// 	ports[port_count++]= temp;
+
+	// 	return temp;
+
+	// }
+
+
 
 
 	void Free_port(uint8_t port){
